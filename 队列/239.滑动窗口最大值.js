@@ -10,6 +10,7 @@
  * @param {number} k
  * @return {number[]}
  */
+//单调递减栈得基础上让数据结构能够shift
 var maxSlidingWindow = function(nums, k) {
     let deque = []
     let res = []

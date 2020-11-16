@@ -11,15 +11,15 @@
  * @return {number[]}
  */
 var intersect = function(nums1, nums2) {
-    let map = {}
     let res = []
-    for (const n of nums1) {
-        map[n] = (map[n] || 0) + 1
+    let map = {}
+    for (const item of nums1) {
+        map[item] = (map[item] || 0) + 1
     }
-    for (const n of nums2) {
-        if (map[n]) {
-            map[n]--
-                res.push(n)
+    for (const item of nums2) {
+        if (map[item]) {
+            res.push(item)
+            map[item]--
         }
     }
     return res
