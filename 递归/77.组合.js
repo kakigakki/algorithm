@@ -10,24 +10,20 @@
  * @param {number} k
  * @return {number[][]}
  */
-var combine = function (n, k) {
-  let res = [];
-  let dfs = (start, path) => {
-    //terminator
-    if (path.length === k) {
-      //light copy
-      res.push(path.slice());
+var combine = function(n, k) {
+    const res = []
+    let helper = (path, start) => {
+        if (path.length === k) {
+            res.push(path.slice())
+            return
+        }
+        for (let i = start; i <= n; i++) {
+            path.push(i)
+            helper(path, i + 1)
+            path.pop()
+        }
     }
-    //process
-    for (let i = start; i <= n; i++) {
-      path.push(i);
-      //recursion
-      dfs(i + 1, path);
-      //restore
-      path.pop();
-    }
-  };
-  dfs(1, []);
-  return res;
+    helper([], 1)
+    return res
 };
 // @lc code=end
