@@ -10,13 +10,13 @@
  * @return {number[][]}
  */
 var subsets = function(nums) {
-    let res = []
-    let helper = (path, index) => {
-        //teminator
+    const res = []
+    const helper = (path, index) => {
         if (index === nums.length) {
             res.push(path.slice())
             return
         }
+
         helper(path, index + 1)
         path.push(nums[index])
         helper(path, index + 1)

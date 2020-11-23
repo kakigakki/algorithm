@@ -11,12 +11,8 @@
  * @return {number}
  */
 var myPow = function(x, n) {
-    //teminator
     if (n === 0) return 1
-    if (n === 1) return x
-        //当n为负数时，转为正
     if (n < 0) return 1 / myPow(x, -n)
-        //分治
     const half = myPow(x, n / 2 | 0)
     return n % 2 ? half * half * x : half * half
 };

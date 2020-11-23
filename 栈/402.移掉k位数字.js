@@ -11,25 +11,23 @@
  * @return {string}
  */
 var removeKdigits = function(num, k) {
-    if (num.length <= k) {
-        return "0"
-    }
+    if (num.length <= k) return "0"
     let stack = []
     for (let i = 0; i < num.length; i++) {
         while (k > 0 && num[i] < stack[stack.length - 1]) {
             stack.pop()
             k--
         }
-        if (num[i] === "0" && stack.length === 0) {
-            continue
-        } else {
-            stack.push(num[i])
-        }
+        stack.push(num[i])
     }
     while (k > 0) {
         stack.pop()
         k--
     }
-    return stack.length ? stack.join("") : "0"
+    while (stack[0] === "0") {
+        stack.shift()
+    }
+    let res = stack.join("")
+    return res === "" ? "0" : res
 };
 // @lc code=end
