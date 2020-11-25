@@ -16,15 +16,12 @@
  * @param {TreeNode} root
  * @return {boolean}
  */
-var isValidBST = function (root) {
-  let isValid = (node, lower, upper) => {
-    if (!node) return true;
-    if (node.val >= upper || node.val <= lower) return false;
-    return (
-      isValid(node.left, lower, node.val) &&
-      isValid(node.right, node.val, upper)
-    );
-  };
-  return isValid(root, -Infinity, Infinity);
+var isValidBST = function(root) {
+    let valid = (node, upper, lower) => {
+        if (!node) return true
+        if (node.val >= upper || node.val <= lower) return false
+        return valid(node.left, node.val, lower) && valid(node.right, upper, node.val)
+    }
+    return valid(root, Infinity, -Infinity)
 };
 // @lc code=end

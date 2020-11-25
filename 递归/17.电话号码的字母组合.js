@@ -11,6 +11,7 @@
  */
 var letterCombinations = function(digits) {
     if (!digits) return []
+    let res = []
         //定义map存储每个号码的字符
     let map = new Map([
         ["2", "abc"],
@@ -22,7 +23,6 @@ var letterCombinations = function(digits) {
         ["8", "tuv"],
         ["9", "wxyz"],
     ])
-    let res = []
     let helper = (str, index) => {
         if (index === digits.length) {
             res.push(str)

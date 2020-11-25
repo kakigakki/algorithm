@@ -12,13 +12,12 @@
 var plusOne = function(digits) {
     digits[digits.length - 1]++
         for (let i = digits.length - 1; i > 0; i--) {
-            if (digits[i] === 10) {
+            if (digits[i] < 10) {
+                break
+            } else {
                 digits[i] = 0
                 digits[i - 1]++
-            } else {
-                return digits
             }
-
         }
     if (digits[0] === 10) {
         digits[0] = 0

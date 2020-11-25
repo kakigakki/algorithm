@@ -10,22 +10,20 @@
  * @return {boolean}
  */
 var validMountainArray = function(arr) {
-    let right = arr.length - 1
-    left = 0
-
-    while (arr[right] < arr[right - 1]) {
-        right--
+    let i = 0
+    let j = arr.length - 1
+    while (arr[i + 1] > arr[i]) {
+        i++
     }
-
-    if (right === 0) return false
-
-    while (arr[left] < arr[left + 1]) {
-        left++
+    if (i === j || i === 0) {
+        return false
     }
-    if (left !== right || left === arr.length - 1) {
+    while (arr[j] < arr[j - 1]) {
+        j--
+    }
+    if (i !== j || j === arr.length - 1) {
         return false
     }
     return true
-
 };
 // @lc code=end

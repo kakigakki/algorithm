@@ -13,25 +13,27 @@
  * @return {number[][]}
  */
 var allCellsDistOrder = function(R, C, r0, c0) {
-    const visited = new Set()
-    const res =[]
-    const queue = [
+    let queue = [
         [r0, c0]
     ]
+    let visited = new Set()
+    let res = []
     while (queue.length) {
-        const [x, y] = queue.shift()
-        if (x > R - 1 || y > C - 1 || x < 0 || y < 0 || visited.has(x*100+y)) continue
+        let [x, y] = queue.shift()
+        if (x >= R || x < 0 || y >= C || y < 0 || visited.has(100 * x + y)) continue
+        visited.add(100 * x + y);
         res.push([x, y]);
-        visited.add(x*100+y);
         [
             [0, 1],
-            [0 ,-1],
             [1, 0],
+            [0, -1],
             [-1, 0]
         ].forEach(move => {
-            queue.push([x + move[0], y + move[1]])
+            queue.push([move[0] + x, move[1] + y])
         })
+
     }
     return res
+
 };
 // @lc code=end
