@@ -9,16 +9,15 @@
  * @param {number[]} height
  * @return {number}
  */
-var maxArea = function(height) {
-    let left = 0,
-        right = height.length - 1,
-        res = 0
-
-    while (left < right) {
-        res = Math.max(Math.min(height[left], height[right]) * (right - left), res)
-        height[left] < height[right] ? left++ : right--
-    }
-
-    return res
+var maxArea = function (height) {
+  let i = 0;
+  let j = height.length - 1;
+  let res = 0;
+  while (i < j) {
+    const sum = Math.min(height[i], height[j]) * (j - i);
+    height[i] < height[j] ? i++ : j--;
+    res = Math.max(sum, res);
+  }
+  return res;
 };
 // @lc code=end

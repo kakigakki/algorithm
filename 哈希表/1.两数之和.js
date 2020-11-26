@@ -10,15 +10,14 @@
  * @param {number} target
  * @return {number[]}
  */
-var twoSum = function(nums, target) {
-    let ht = {}
-    for (let i = 0; i < nums.length; i++) {
-        const key = target - nums[i]
-        if (ht[key] !== undefined) {
-            return [ht[key], i]
-        }
-        ht[nums[i]] = i
+var twoSum = function (nums, target) {
+  let ht = {};
+  for (let i = 0; i < nums.length; i++) {
+    if (ht[target - nums[i]] !== undefined) {
+      return [i, ht[target - nums[i]]];
     }
-    return []
+    ht[nums[i]] = i;
+  }
+  return [];
 };
 // @lc code=end
