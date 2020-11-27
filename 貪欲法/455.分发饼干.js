@@ -11,20 +11,18 @@
  * @return {number}
  */
 var findContentChildren = function (g, s) {
-  if (!s.length) return 0;
-  let count = 0;
   g.sort((a, b) => a - b);
   s.sort((a, b) => a - b);
   let i = 0;
   let j = 0;
-  while (i < g.length) {
+  let res = 0;
+  while (j < s.length) {
     if (s[j] >= g[i]) {
+      res++;
       i++;
-      count++;
     }
     j++;
-    if (j === s.length) return count;
   }
-  return count;
+  return res;
 };
 // @lc code=end
