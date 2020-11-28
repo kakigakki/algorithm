@@ -11,19 +11,19 @@
  * @return {number[][]}
  */
 var combine = function(n, k) {
-    const res = []
-    let helper = (path, start) => {
+    let res = []
+    let helper = (start, path) => {
         if (path.length === k) {
             res.push(path.slice())
             return
         }
         for (let i = start; i <= n; i++) {
             path.push(i)
-            helper(path, i + 1)
+            helper(i + 1, path)
             path.pop()
         }
     }
-    helper([], 1)
+    helper(1, [])
     return res
 };
 // @lc code=end

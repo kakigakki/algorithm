@@ -12,7 +12,7 @@
 var generateParenthesis = function(n) {
     let res = []
     let helper = (str, remainL, remainR) => {
-        if (str.length === n * 2) {
+        if (str.length === 2 * n) {
             res.push(str)
             return
         }
