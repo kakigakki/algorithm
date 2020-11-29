@@ -10,19 +10,18 @@
  * @return {number[][]}
  */
 var subsets = function(nums) {
-    const res = []
-    const helper = (path, index) => {
+    let res = []
+    let hepler = (path, index) => {
         if (index === nums.length) {
             res.push(path.slice())
             return
         }
-
-        helper(path, index + 1)
+        hepler(path.slice(), index + 1)
         path.push(nums[index])
-        helper(path, index + 1)
-        path.pop()
+        hepler(path.slice(), index + 1)
+
     }
-    helper([], 0)
+    hepler([], 0)
     return res
 };
 // @lc code=end
