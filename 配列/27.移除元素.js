@@ -11,11 +11,14 @@
  * @return {number}
  */
 var removeElement = function(nums, val) {
+    let i = 0
     let j = 0
-    for (let i = 0; i < nums.length; i++) {
+    while (i < nums.length) {
         if (nums[i] !== val) {
-            nums[j++] = nums[i]
+            nums[j] = nums[i]
+            j++
         }
+        i++
     }
     return j
 };

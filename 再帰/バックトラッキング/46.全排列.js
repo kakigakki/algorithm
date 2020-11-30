@@ -11,22 +11,22 @@
  */
 var permute = function(nums) {
     let res = []
-    let visited = new Array(nums.length)
-    let helper = (path) => {
+    let visited = new Set()
+    let hepler = (path) => {
         if (path.length === nums.length) {
             res.push(path.slice())
             return
         }
         for (let i = 0; i < nums.length; i++) {
-            if (visited[i]) continue
-            visited[i] = true
+            if (visited.has(i)) continue
+            visited.add(i)
             path.push(nums[i])
-            helper(path)
+            hepler(path)
             path.pop()
-            visited[i] = false
+            visited.delete(i)
         }
     }
-    helper([])
+    hepler([])
     return res
 };
 // @lc code=end

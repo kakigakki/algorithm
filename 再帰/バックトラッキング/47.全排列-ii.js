@@ -12,15 +12,16 @@
 var permuteUnique = function(nums) {
     let res = []
     let visited = new Array(nums.length)
-    nums.sort((a, b) => a - b)
     let helper = (path) => {
         if (path.length === nums.length) {
             res.push(path.slice())
             return
         }
+        let subVisited = []
         for (let i = 0; i < nums.length; i++) {
-            if ((i > 0 && nums[i - 1] === nums[i] && !visited[i - 1]) || visited[i]) continue
+            if (subVisited[nums[i]] || visited[i]) continue
             visited[i] = true
+            subVisited[nums[i]] = true
             path.push(nums[i])
             helper(path)
             path.pop()
