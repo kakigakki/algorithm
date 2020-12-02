@@ -10,7 +10,7 @@
  * @param {number} amount
  * @return {number}
  */
-//bfs+贪心
+//dfs+贪心
 var coinChange = function (coins, amount) {
   if (!amount) return 0;
   let ans = Infinity;
