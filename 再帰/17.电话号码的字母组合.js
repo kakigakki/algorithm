@@ -11,25 +11,26 @@
  */
 var letterCombinations = function(digits) {
     if (!digits) return []
+    let map = {
+        "2": "abc",
+        "3": "def",
+        "4": "ghi",
+        "5": "jkl",
+        "6": "mno",
+        "7": "pqrs",
+        "8": "tuv",
+        "9": "wxyz"
+    }
     let res = []
-        //定义map存储每个号码的字符
-    let map = new Map([
-        ["2", "abc"],
-        ["3", "def"],
-        ["4", "ghi"],
-        ['5', "jkl"],
-        ['6', "mno"],
-        ["7", "pqrs"],
-        ["8", "tuv"],
-        ["9", "wxyz"],
-    ])
     let helper = (str, index) => {
-        if (index === digits.length) {
+        if (str.length === digits.length) {
             res.push(str)
             return
         }
-        for (const c of map.get(digits[index])) {
-            helper(str + c, index + 1)
+        const num = digits[index]
+        const numStr = map[num]
+        for (let i = 0; i < numStr.length; i++) {
+            helper(str + numStr[i], index + 1)
         }
     }
     helper("", 0)

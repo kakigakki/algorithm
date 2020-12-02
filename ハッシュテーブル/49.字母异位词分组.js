@@ -12,16 +12,16 @@
 
 //利用字符的字符码计数。
 var groupAnagrams = function(strs) {
-    let map = {}
+    if (!strs.length) return []
+    let resMap = {}
     for (const str of strs) {
-        let arr = new Array(26).fill(0)
+        const arr = new Array(26).fill(0)
         for (const c of str) {
-            const cCode = c.charCodeAt() - 97
-            arr[cCode] = (arr[cCode] || 0) + 1
+            arr[c.charCodeAt() - 97]++
         }
-        const strKey = arr.join()
-        map[strKey] ? map[strKey].push(str) : map[strKey] = [str]
+        const key = arr.join()
+        resMap[key] ? resMap[key].push(str) : resMap[key] = [str]
     }
-    return Object.values(map)
+    return Object.values(resMap)
 };
 // @lc code=end

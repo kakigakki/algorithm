@@ -23,11 +23,11 @@ var preorder = function(root) {
     let arr = [root]
     let res = []
     while (arr.length) {
-        let curNode = arr.pop()
-        if (curNode) {
-            res.push(curNode.val)
-            for (let i = curNode.children.length - 1; i >= 0; i--) {
-                arr.push(curNode.children[i])
+        const node = arr.pop()
+        if (node) {
+            res.push(node.val)
+            for (let i = node.children.length - 1; i >= 0; i--) {
+                arr.push(node.children[i])
             }
         }
     }

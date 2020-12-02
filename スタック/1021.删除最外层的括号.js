@@ -14,12 +14,10 @@ var removeOuterParentheses = function(S) {
         res = ""
     for (const c of S) {
         if (c === "(") {
-            //如果栈中已经有前括号的话，证明此时c不为最外层
             if (stack.length) res += c
             stack.push(c)
         } else if (c === ")") {
             stack.pop()
-                //如果栈中已经有前括号的话，证明此前c不为最外层
             if (stack.length) res += c
         }
     }

@@ -16,21 +16,22 @@
  * @param {TreeNode} root
  * @return {number[][]}
  */
-var levelOrder = function (root) {
-  if (!root) return [];
-  let queue = [root];
-  let res = [];
-  while (queue.length) {
-    let len = queue.length;
-    const subRes = [];
-    while (len--) {
-      const curNode = queue.shift();
-      subRes.push(curNode.val);
-      curNode.left && queue.push(curNode.left);
-      curNode.right && queue.push(curNode.right);
+var levelOrder = function(root) {
+    if (!root) return []
+    let queue = [
+        [root, 0]
+    ]
+    let res = []
+    while (queue.length) {
+        const [node, level] = queue.shift();
+        (res[level] || (res[level] = [])).push(node.val)
+        if (node.left) {
+            queue.push([node.left, level + 1])
+        }
+        if (node.right) {
+            queue.push([node.right, level + 1])
+        }
     }
-    res.push(subRes);
-  }
-  return res;
+    return res
 };
 // @lc code=end

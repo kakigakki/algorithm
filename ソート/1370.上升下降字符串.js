@@ -11,23 +11,22 @@
  */
 //桶排序
 var sortString = function(s) {
-    let bucket = new Array(26).fill(0);
-    for (const c of s) {
-        bucket[c.charCodeAt() - 97]++;
-    }
+    let bucket = new Array(26).fill(0)
     let t = ""
-    while (t.length !== s.length) {
+    for (const c of s) {
+        bucket[c.charCodeAt() - 97]++
+    }
+    while (t.length < s.length) {
         for (let i = 0; i < bucket.length; i++) {
             if (bucket[i]) {
                 t += String.fromCharCode(i + 97)
                 bucket[i]--
             }
-
         }
-        for (let j = bucket.length - 1; j >= 0; j--) {
-            if (bucket[j]) {
-                t += String.fromCharCode(j + 97)
-                bucket[j]--
+        for (let i = bucket.length - 1; i >= 0; i--) {
+            if (bucket[i]) {
+                t += String.fromCharCode(i + 97)
+                bucket[i]--
             }
         }
     }

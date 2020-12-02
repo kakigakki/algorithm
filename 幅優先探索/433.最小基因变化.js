@@ -12,26 +12,27 @@
  * @return {number}
  */
 var minMutation = function(start, end, bank) {
-    let bankSet = new Set(bank)
+    const bankSet = new Set(bank)
     if (!bankSet.has(end)) return -1
     const dna = ["A", "C", "G", "T"]
-    let queue = [
+    const queue = [
         [start, 0]
     ]
     while (queue.length) {
-        let [curNode, count] = queue.shift()
+        let [curWord, count] = queue.shift()
         count++
         for (let i = 0; i < dna.length; i++) {
-            for (let j = 0; j < curNode.length; j++) {
-                const newNode = curNode.slice(0, j) + dna[i] + curNode.slice(j + 1)
-                if (bankSet.has(newNode)) {
-                    if (newNode === end) return count
-                    queue.push([newNode, count])
-                    bankSet.delete(newNode)
+            for (let j = 0; j < curWord.length; j++) {
+                const newWord = curWord.slice(0, j) + dna[i] + curWord.slice(j + 1)
+                if (bankSet.has(newWord)) {
+                    if (newWord === end) return count
+                    queue.push([newWord, count])
+                    bankSet.delete(newWord)
                 }
             }
         }
     }
     return -1
+
 };
 // @lc code=end
