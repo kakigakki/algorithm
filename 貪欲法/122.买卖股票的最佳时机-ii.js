@@ -9,19 +9,19 @@
  * @param {number[]} prices
  * @return {number}
  */
-var maxProfit = function (prices) {
-  let i = 0;
-  let j = 1;
-  let res = 0;
-  while (j < prices.length) {
-    if (prices[i] >= prices[j]) {
-      i++;
-    } else {
-      res += prices[j] - prices[i];
-      i = j;
+var maxProfit = function(prices) {
+
+    let res = 0
+    let j = 0
+    for (let i = 1; i < prices.length; i++) {
+        if (prices[j] < prices[i]) {
+            res += prices[i] - prices[j]
+            j = i
+        } else {
+            j++
+        }
     }
-    j++;
-  }
-  return res;
+    return res
+
 };
 // @lc code=end

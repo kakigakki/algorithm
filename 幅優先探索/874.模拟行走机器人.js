@@ -21,33 +21,30 @@ var robotSim = function(commands, obstacles) {
         270: [-1, 0],
     };
     for (let i = 0; i < commands.length; i++) {
-        if (commands[i] === -2) {
-            degree -= 90
-            if (degree < 0) {
-                degree = 360 + degree
-            }
-            continue;
-        } else if (commands[i] === -1) {
-            degree += 90
+        if (commands[i] === -1) {
+            degree = degree + 90
             if (degree === 360) {
                 degree = 0
             }
-            continue;
+        } else if (commands[i] === -2) {
+            degree = degree - 90
+            if (degree === -90) {
+                degree = 270
+            }
         } else {
-            //机器人的方向
-            const [x, y] = map[degree];
-            //机器人步数
-            let move = commands[i];
+            const [x, y] = map[degree]
+            let move = commands[i]
             move: while (move--) {
+                //判断前方是否有障碍物
                 for (const obs of obstacles) {
-                    const [obsX, obsY] = obs;
+                    const [obsX, obsY] = obs
                     if (robot[0] + x === obsX && robot[1] + y === obsY) {
                         break move
                     }
                 }
-                robot[0] += x;
-                robot[1] += y;
-                res = Math.max(res, robot[0] * robot[0] + robot[1] * robot[1])
+                robot[0] += x
+                robot[1] += y
+                res = Math.max(res, robot[0] ** 2 + robot[1] ** 2)
             }
         }
     }

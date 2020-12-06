@@ -10,19 +10,17 @@
  * @param {number[]} s
  * @return {number}
  */
-var findContentChildren = function (g, s) {
-  g.sort((a, b) => a - b);
-  s.sort((a, b) => a - b);
-  let i = 0;
-  let j = 0;
-  let res = 0;
-  while (j < s.length) {
-    if (s[j] >= g[i]) {
-      res++;
-      i++;
+var findContentChildren = function(g, s) {
+    g.sort((a, b) => a - b)
+    s.sort((a, b) => a - b)
+    let i = 0
+    let res = 0
+    for (let j = 0; j < s.length; j++) {
+        if (g[i] <= s[j]) {
+            res++
+            i++
+        }
     }
-    j++;
-  }
-  return res;
+    return res
 };
 // @lc code=end
