@@ -10,8 +10,8 @@
  * @param {number} k
  * @return {string}
  */
+//单调递增栈
 var removeKdigits = function(num, k) {
-    if (num.length <= k) return "0"
     let stack = []
     for (let i = 0; i < num.length; i++) {
         while (k > 0 && num[i] < stack[stack.length - 1]) {
@@ -20,14 +20,13 @@ var removeKdigits = function(num, k) {
         }
         stack.push(num[i])
     }
-    while (k > 0) {
-        stack.pop()
-        k--
+    if (k > 0) {
+        while (k--) {
+            stack.pop()
+        }
     }
-    while (stack[0] === "0") {
-        stack.shift()
-    }
-    let res = stack.join("")
-    return res === "" ? "0" : res
+
+    while (stack[0] === "0") stack.shift()
+    return stack.length ? stack.join("") : "0"
 };
 // @lc code=end

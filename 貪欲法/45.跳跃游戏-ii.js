@@ -12,13 +12,11 @@
 //贪心算法
 var jump = function(nums) {
         let res = 0
-            //记录每个元素能跳到的最远距离
-        let next = 0
         let end = 0
+        let next = 0
         for (let i = 0; i < nums.length; i++) {
-            next = Math.max(next, i + nums[i]) //记录当前点能跳到的最远距离
+            next = Math.max(i + nums[i], next)
             if (end >= nums.length - 1) return res
-                //当前能跳到的最远距离时的元素。
             if (end === i) {
                 end = next
                 res++

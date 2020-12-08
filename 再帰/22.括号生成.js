@@ -16,7 +16,6 @@ var generateParenthesis = function(n) {
             res.push(str)
             return
         }
-
         if (remainL > 0) {
             helper(str + "(", remainL - 1, remainR)
         }

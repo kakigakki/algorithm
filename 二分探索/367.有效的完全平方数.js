@@ -10,11 +10,10 @@
  * @return {boolean}
  */
 var isPerfectSquare = function(num) {
-
-    let left = 0,
+    let left = 1,
         right = num
     while (left < right) {
-        const mid = (right + left + 1) >>> 1
+        const mid = left + ((right - left + 1) >>> 1)
         if (mid * mid > num) {
             right = mid - 1
         } else if (mid * mid === num) {
@@ -23,6 +22,6 @@ var isPerfectSquare = function(num) {
             left = mid
         }
     }
-    return left * left === num ? true : false
+    return left * left === num
 };
 // @lc code=end
