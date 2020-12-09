@@ -18,10 +18,7 @@
  */
 var invertTree = function(root) {
     if (!root) return root;
-    [
-        root.left,
-        root.right
-    ] = [invertTree(root.right), invertTree(root.left)]
+    [root.left, root.right] = [invertTree(root.right), invertTree(root.left)]
     return root
 };
 // @lc code=end

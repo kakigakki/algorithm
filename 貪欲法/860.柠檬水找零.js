@@ -10,29 +10,23 @@
  * @return {boolean}
  */
 var lemonadeChange = function(bills) {
-    let $five = 0
-    let $ten = 0
+    let five = 0
+    let ten = 0
     for (const m of bills) {
         if (m === 5) {
-            $five++
+            five++
         } else if (m === 10) {
-            if (!$five) return false
-            $five--
-            $ten++
+            if (!five) return false
+            five--
+            ten++
         } else {
-            if ($ten) {
-                if ($five) {
-                    $ten--
-                    $five--
-                } else {
-                    return false
-                }
+            if (five > 0 && ten > 0) {
+                five--
+                ten--
+            } else if (five >= 3) {
+                five -= 3
             } else {
-                if ($five >= 3) {
-                    $five -= 3
-                } else {
-                    return false
-                }
+                return false
             }
         }
     }

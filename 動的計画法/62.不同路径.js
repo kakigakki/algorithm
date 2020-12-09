@@ -11,17 +11,16 @@
  * @return {number}
  */
 var uniquePaths = function(m, n) {
-        const dp = new Array(n).fill().map(() => {
-            return new Array(m).fill(0)
-        })
-        dp[0][0] = 1
-        for (let i = 0; i < n; i++) {
-            for (let j = 0; j < m; j++) {
-                const up = i >= 1 ? dp[i - 1][j] : 0
-                const left = j >= 1 ? dp[i][j - 1] : 0
-                dp[i][j] += up + left
-            }
-        };
-        return dp[n - 1][m - 1]
-    }
     // @lc code=end
+    let grid = []
+    for (let i = m - 1; i >= 0; i--) {
+        grid[i] = new Array(n).fill(1)
+    }
+    for (let i = 1; i < m; i++) {
+        for (let j = 1; j < n; j++) {
+            grid[i][j] = grid[i - 1][j] + grid[i][j - 1]
+        }
+    }
+    return grid[m - 1][n - 1]
+};
+// @lc code=end
