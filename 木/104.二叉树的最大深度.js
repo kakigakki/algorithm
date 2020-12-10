@@ -17,12 +17,13 @@
  * @return {number}
  */
 var maxDepth = function(root) {
-    let depth = (node,dep)=>{
-        if(!node) return dep
-        dep++
-        return Math.max(depth(node.left,dep),depth(node.right,dep))
+    if (!root) return 0
+    if (!root.left) {
+        return maxDepth(root.right) + 1
+    } else if (!root.right) {
+        return maxDepth(root.left) + 1
     }
-    return depth(root,0)
+    return Math.max(maxDepth(root.right), maxDepth(root.left)) + 1
+
 };
 // @lc code=end
-

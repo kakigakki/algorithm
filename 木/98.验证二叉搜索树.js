@@ -17,11 +17,13 @@
  * @return {boolean}
  */
 var isValidBST = function(root) {
-    let valid = (node, upper, lower) => {
+    let helper = (node, upper, lower) => {
         if (!node) return true
-        if (node.val >= upper || node.val <= lower) return false
-        return valid(node.left, node.val, lower) && valid(node.right, upper, node.val)
+        if (node.val >= upper || node.val <= lower) {
+            return false
+        }
+        return helper(node.right, upper, node.val) && helper(node.left, node.val, lower)
     }
-    return valid(root, Infinity, -Infinity)
+    return helper(root, Infinity, -Infinity)
 };
 // @lc code=end

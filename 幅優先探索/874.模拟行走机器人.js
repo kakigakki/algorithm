@@ -11,42 +11,37 @@
  * @return {number}
  */
 var robotSim = function(commands, obstacles) {
-    let degree = 0;
-    let res = 0;
-    let robot = [0, 0];
-    let map = {
-        0: [0, 1],
-        90: [1, 0],
-        180: [0, -1],
-        270: [-1, 0],
-    };
+    let x = 0
+    let y = 0
+    let res = 0
+    let dire = 0 //0 :上 1：右  2：下  3：左
+    const obs = {}
+        //数组作为建，会变化为" xx,xx"字符串
+    for (let i = 0; i < obstacles.length; i++) {
+        obs[obstacles[i]] = true
+    }
     for (let i = 0; i < commands.length; i++) {
         if (commands[i] === -1) {
-            degree = degree + 90
-            if (degree === 360) {
-                degree = 0
-            }
+            dire = (dire + 1) % 4
         } else if (commands[i] === -2) {
-            degree = degree - 90
-            if (degree === -90) {
-                degree = 270
-            }
+            dire = (dire - 1 + 4) % 4
         } else {
-            const [x, y] = map[degree]
-            let move = commands[i]
-            move: while (move--) {
-                //判断前方是否有障碍物
-                for (const obs of obstacles) {
-                    const [obsX, obsY] = obs
-                    if (robot[0] + x === obsX && robot[1] + y === obsY) {
-                        break move
+            while (commands[i]--) {
+                const prevX = x
+                const prevY = y
+                dire === 0 && y++
+                    dire === 1 && x++
+                    dire === 2 && y--
+                    dire === 3 && x--
+                    if (obs[x + "," + y]) {
+                        x = prevX
+                        y = prevY
+                        break
                     }
-                }
-                robot[0] += x
-                robot[1] += y
-                res = Math.max(res, robot[0] ** 2 + robot[1] ** 2)
+
             }
         }
+        res = Math.max(res, x * x + y * y)
     }
     return res
 };

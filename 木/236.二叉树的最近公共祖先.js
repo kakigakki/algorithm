@@ -18,22 +18,19 @@
  * @param {TreeNode} q
  * @return {TreeNode}
  */
-var lowestCommonAncestor = function (root, p, q) {
-  if (!root) return null;
-  if (root === p || root === q) {
-    return root;
-  }
-  root.right = lowestCommonAncestor(root.right, p, q);
-  root.left = lowestCommonAncestor(root.left, p, q);
-
-  if (root.left && root.right) {
-    return root;
-  }
-
-  if (!root.right) {
-    return root.left;
-  } else {
-    return root.right;
-  }
+var lowestCommonAncestor = function(root, p, q) {
+    if (!root) return null
+    if (root === p || root === q) {
+        return root
+    }
+    root.right = lowestCommonAncestor(root.right, p, q)
+    root.left = lowestCommonAncestor(root.left, p, q)
+    if (!root.right) {
+        return root.left
+    }
+    if (!root.left) {
+        return root.right
+    }
+    return root
 };
 // @lc code=end

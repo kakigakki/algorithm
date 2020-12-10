@@ -19,34 +19,34 @@
  * @param {TreeNode} root
  * @return {string}
  */
-var serialize = function (root) {
-  let str = "";
-  let ser = (str, node) => {
-    if (!node) {
-      str += "null,";
-      return str;
+var serialize = function(root) {
+    let helper = (node, str) => {
+        if (!node) {
+            str += "null,"
+            return str
+        } else {
+            str += node.val + ","
+        }
+        str = helper(node.left, str)
+        str = helper(node.right, str)
+        return str
     }
-    str += node.val + ",";
-    str = ser(str, node.left);
-    str = ser(str, node.right);
-    return str;
-  };
-  return ser(str, root);
+    return helper(root, "")
 };
 
-var deserialize = function (data) {
-  let arr = data.split(",");
-  let deser = () => {
-    const nodeVal = +arr.shift();
-    let node = null;
-    if (!isNaN(nodeVal)) {
-      node = new TreeNode(nodeVal);
-      node.left = deser(node.left);
-      node.right = deser(node.right);
+var deserialize = function(data) {
+    const arr = data.split(",")
+    let helper = () => {
+        const newNode = +arr.shift()
+        let root = null
+        if (!isNaN(newNode)) {
+            root = new TreeNode(newNode)
+            root.left = helper()
+            root.right = helper()
+        }
+        return root
     }
-    return node;
-  };
-  return deser();
+    return helper()
 };
 
 /**
