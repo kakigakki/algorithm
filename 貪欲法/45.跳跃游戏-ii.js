@@ -11,7 +11,6 @@
  */
 //贪心算法,动态规划
 var jump = function(nums) {
-
         let res = 0
         let end = 0
         let next = 0
