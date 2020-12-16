@@ -12,18 +12,17 @@
  */
 var combine = function(n, k) {
     let res = []
-    let helper = (start, path) => {
+    let helper = (path, index) => {
         if (path.length === k) {
             res.push(path.slice())
-            return
         }
-        for (let i = start; i <= n; i++) {
-            path.push(i)
-            helper(i + 1, path)
+        for (let i = index; i < n; i++) {
+            path.push(i + 1)
+            helper(path, i + 1)
             path.pop()
         }
     }
-    helper(1, [])
+    helper([], 0)
     return res
 };
 // @lc code=end

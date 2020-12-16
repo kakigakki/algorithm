@@ -10,30 +10,37 @@
  */
 class Trie {
     constructor() {
-        this.hash = {}
+        this.hash = Object.create(null)
     }
+
     insert(word) {
         let map = this.hash
         for (const c of word) {
             if (!map[c]) {
-                map[c] = {}
+                map[c] = Object.create(null)
             }
             map = map[c]
         }
         map.isEnd = true
+        return this.hash
     }
     search(word) {
         let map = this.hash
         for (const c of word) {
-            if (!map[c]) return false
+            if (!map[c]) {
+                return false
+            }
             map = map[c]
         }
         return map.isEnd ? true : false
     }
-    startsWith(prefix) {
+
+    startsWith(preFix) {
         let map = this.hash
-        for (const c of prefix) {
-            if (!map[c]) return false
+        for (const c of preFix) {
+            if (!map[c]) {
+                return false
+            }
             map = map[c]
         }
         return true

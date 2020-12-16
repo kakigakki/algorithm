@@ -10,23 +10,22 @@
  * @return {number[][]}
  */
 var permute = function(nums) {
+    let visited = []
     let res = []
-    let visited = new Set()
-    let hepler = (path) => {
+    let helper = (path) => {
         if (path.length === nums.length) {
             res.push(path.slice())
-            return
         }
         for (let i = 0; i < nums.length; i++) {
-            if (visited.has(i)) continue
-            visited.add(i)
+            if (visited[i]) continue
             path.push(nums[i])
-            hepler(path)
+            visited[i] = true
+            helper(path)
             path.pop()
-            visited.delete(i)
+            visited[i] = false
         }
     }
-    hepler([])
+    helper([])
     return res
 };
 // @lc code=end

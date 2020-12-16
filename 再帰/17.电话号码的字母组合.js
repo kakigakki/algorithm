@@ -11,6 +11,7 @@
  */
 var letterCombinations = function(digits) {
     if (!digits) return []
+    const res = []
     let map = {
         "2": "abc",
         "3": "def",
@@ -21,19 +22,18 @@ var letterCombinations = function(digits) {
         "8": "tuv",
         "9": "wxyz"
     }
-    let res = []
-    let helper = (str, index) => {
+    const helper = (str, index) => {
         if (str.length === digits.length) {
             res.push(str)
             return
         }
-        const num = digits[index]
-        const numStr = map[num]
-        for (let i = 0; i < numStr.length; i++) {
-            helper(str + numStr[i], index + 1)
+        const curNum = map[digits[index]]
+        for (let i = 0; i < curNum.length; i++) {
+            helper(str + curNum[i], index + 1)
         }
     }
     helper("", 0)
     return res
+
 };
 // @lc code=end
