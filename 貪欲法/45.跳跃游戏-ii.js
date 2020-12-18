@@ -16,8 +16,8 @@ var jump = function(nums) {
         let end = 0
         let next = 0
         for (let i = 0; i < nums.length; i++) {
-            next = Math.max(i + nums[i], next)
-            if (end >= nums.length - 1) return res
+            next = Math.max(next, nums[i] + i)
+            if (end === nums.length - 1) return res
             if (end === i) {
                 end = next
                 res++

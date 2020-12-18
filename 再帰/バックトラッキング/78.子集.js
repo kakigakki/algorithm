@@ -11,17 +11,17 @@
  */
 var subsets = function(nums) {
     let res = []
-    let hepler = (path, index) => {
+    let helper = (index, path) => {
         if (index === nums.length) {
             res.push(path.slice())
             return
         }
-        hepler(path.slice(), index + 1)
+        helper(index + 1, path)
         path.push(nums[index])
-        hepler(path.slice(), index + 1)
-
+        helper(index + 1, path)
+        path.pop()
     }
-    hepler([], 0)
+    helper(0, [])
     return res
 };
 // @lc code=end
