@@ -1,26 +1,50 @@
 /*
- * @lc app=leetcode.cn id=547 lang=javascript
+ * @lc app=leetcode.cn id=130 lang=javascript
  *
- * [547] 朋友圈
+ * [130] 被围绕的区域
  */
 
 // @lc code=start
 /**
- * @param {number[][]} M
- * @return {number}
+ * @param {character[][]} board
+ * @return {void} Do not return anything, modify board in-place instead.
  */
-var findCircleNum = function(M) {
-    const n = M.length
-    let friends = new UnionFind(n)
+var solve = function(board) {
+    if (!board.length) return
+    const n = board.length
+    const m = board[0].length
+    const uf = new UnionFind(n * m)
+    const dummy = n * m
+    const arr = [
+        [1, 0],
+        [-1, 0],
+        [0, 1],
+        [0, -1]
+    ]
     for (let i = 0; i < n; i++) {
-        //对称矩阵，内循环可以从小于i，只算矩阵斜线的左半边
-        for (let j = 0; j < i; j++) {
-            if (M[i][j]) {
-                friends.union(i, j)
+        for (let j = 0; j < m; j++) {
+            if (board[i][j] === "O") {
+                if (i === 0 || j === 0 || i === n - 1 || j === m - 1) {
+                    uf.union(i * m + j, dummy)
+                } else {
+                    arr.forEach(around => {
+                        const x = around[0] + i
+                        const y = around[1] + j
+                        if (board[x][y] === "O") {
+                            uf.union(i * m + j, x * m + y)
+                        }
+                    })
+                }
             }
         }
     }
-    return friends.getCount()
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < m; j++) {
+            if (board[i][j] === "O" && !uf.connected(i * m + j, dummy)) {
+                board[i][j] = "X"
+            }
+        }
+    }
 };
 
 class UnionFind {
@@ -64,5 +88,4 @@ class UnionFind {
         return this.count
     }
 }
-
 // @lc code=end
