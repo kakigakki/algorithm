@@ -11,11 +11,11 @@
  */
 var maxProfit = function(prices) {
     //dp[i] = Math.max(dp[i-1],price[i]-min)
-    let min = Infinity
     let res = 0
+    let min = Infinity
     for (let i = 0; i < prices.length; i++) {
         min = Math.min(min, prices[i])
-        res = Math.max(prices[i] - min, res)
+        res = Math.max(res, prices[i] - min)
     }
     return res
 };
