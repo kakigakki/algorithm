@@ -24,9 +24,8 @@ var solveNQueens = function(n) {
             res.push(board.map(line => line.join("")))
             return
         }
-
         for (let col = 0; col < n; col++) {
-            //判断当前列，当前正对角线，当前反对角线上是否已经被占了
+            //判断当前列,当前反对角线,当前正对角线上是否已经被占了
             if (cols.has(col) || diagonal1.has(row + col) || diagonal2.has(row - col)) continue
             board[row][col] = 'Q'
             cols.add(col)
