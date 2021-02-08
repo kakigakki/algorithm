@@ -10,21 +10,21 @@
  * @return {number}
  */
 var minimumEffortPath = function(heights) {
-    const edges = []
     const rows = heights.length
     const cols = heights[0].length
     if (rows === 1 && cols === 1) return 0
-    const uf = new UnionFind(rows * cols)
     const start = 0
     const end = rows * cols - 1
+    const uf = new UnionFind(rows * cols)
+    const edges = []
     for (let i = 0; i < rows; i++) {
         for (let j = 0; j < cols; j++) {
             const pos = i * cols + j
             if (i + 1 < rows) {
-                edges.push([Math.abs(heights[i + 1][j] - heights[i][j]), pos, pos + cols])
+                edges.push([Math.abs(heights[i][j] - heights[i + 1][j]), pos, pos + cols])
             }
             if (j + 1 < cols) {
-                edges.push([Math.abs(heights[i][j + 1] - heights[i][j]), pos, pos + 1])
+                edges.push([Math.abs(heights[i][j] - heights[i][j + 1]), pos, pos + 1])
             }
         }
     }

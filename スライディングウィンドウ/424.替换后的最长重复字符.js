@@ -11,17 +11,18 @@
  * @return {number}
  */
 var characterReplacement = function(s, k) {
+    const wordCount = new Array(26).fill(0)
     const n = s.length
     const Acode = "A".charCodeAt()
     let left = 0,
         right = 0,
         max = 0
-    const nums = new Array(26).fill(0)
     while (right < n) {
-        const rightCount = ++nums[s[right].charCodeAt() - Acode]
-        max = Math.max(rightCount, max)
+        const rightCount = s[right].charCodeAt() - Acode
+        max = Math.max(max, ++wordCount[rightCount])
         if (right - left + 1 > max + k) {
-            nums[s[left].charCodeAt() - Acode]--
+            const leftCount = s[left].charCodeAt() - Acode
+            wordCount[leftCount]--
                 left++
         }
         right++
