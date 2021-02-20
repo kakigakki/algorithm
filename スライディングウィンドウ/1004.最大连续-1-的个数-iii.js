@@ -11,16 +11,18 @@
  * @return {number}
  */
 var longestOnes = function(A, K) {
-    const n = A.length
     let left = 0,
         right = 0,
-        max = 0,
+        //记录当前窗口共有几个1
         ones = 0
+    const n = A.length
     while (right < n) {
         if (A[right]) ones++;
-        max = Math.max(max, ones)
-        if (right - left + 1 > max + K) {
-            if (A[left]) ones--;
+        //如果窗口长度大于1的个数+K，则证明需要缩小窗口
+        if (right - left + 1 > ones + K) {
+            if (A[left]) {
+                ones--
+            }
             left++
         }
         right++
