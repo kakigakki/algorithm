@@ -11,7 +11,7 @@
  */
 var subsets = function(nums) {
     let res = []
-    let helper = (index, path) => {
+    const helper = (index, path) => {
         if (index === nums.length) {
             res.push(path.slice())
             return
